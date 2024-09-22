@@ -22,6 +22,23 @@ export default function Home() {
     setSeats(generatedSeats);
   }, []);
 
+  const resetSeats = () => {
+    const newSeats = seats.map(seat => ({
+      ...seat,
+      booked: false,
+      currentlySelected: false,
+    }));
+    setSeats(newSeats);
+  }
+
+  const bookAllSeats = () => {
+    const newSeats = seats.map(seat => ({
+      ...seat,
+      booked: true,
+    }));
+    setSeats(newSeats);
+  }
+
   const toggleSeatSelection = (seatNumber: number) => {
     setSeats((prevSeats) => {
       const index = seatNumber - 1;
@@ -56,8 +73,18 @@ export default function Home() {
         <div className="flex justify-between mb-4">
           {editMode && (
             <div className="flex gap-2">
-              <button className="text-[10px] border h-6 w-12 tracking-wider select-none border-blue">RESET</button>
-              <button className="text-[10px] border h-6 w-20 tracking-wider select-none border-blue">SELECT ALL</button>
+              <button 
+                className="text-[10px] border h-6 w-12 tracking-wider select-none border-blue"
+                onClick={resetSeats}
+              >
+                RESET
+              </button>
+              <button 
+                className="text-[10px] border h-6 w-20 tracking-wider select-none border-blue"
+                onClick={bookAllSeats}
+              >
+                SELECT ALL
+              </button>
             </div>
           )}
 
