@@ -46,27 +46,32 @@ const SeatBox = styled.div`
 const Seat = ({ seat, editMode, toggleBook, toggleSelect }: Props) => {
         if ( seat.booked && seat.currentlySelected) {
             return (
-                <SeatBox className='bg-blue text-sky'>
+                <SeatBox 
+                    className={`bg-blue text-sky ${editMode ? "cursor-pointer" : ""}`}
+                    onClick={editMode ? toggleBook : () => {}}
+                >
                     {
                         editMode && (
                             <input 
                                 type="checkbox" 
                                 name="selected" 
                                 id="selected" 
-                                onClick={toggleBook}
                                 checked={seat.booked}
-                                className="absolute top-1 left-1 rounded bg-sky text-gray outline-none focus:ring-0 focus:ring-offset-1 border-blue"
+                                className="absolute pointer-events-none top-1 left-1 rounded bg-sky text-gray outline-none focus:ring-0 focus:ring-offset-1 border-blue"
                             />
                         )
                     }
-                    <span className="text-sm text-sky font-bold">{seat.seatNumber}</span>
+                    <span className="text-sm text-sky font-bold select-none">{seat.seatNumber}</span>
                 </SeatBox>
             );
         }
 
         if (seat.booked) {
             return (
-                <BookedSeatBox>
+                <BookedSeatBox
+                    onClick={editMode ? toggleBook : () => {}}
+                    className={editMode ? "cursor-pointer" : ""}
+                >
                     {
                         editMode && (
                             <input 
@@ -74,19 +79,21 @@ const Seat = ({ seat, editMode, toggleBook, toggleSelect }: Props) => {
                                 name="selected" 
                                 id="selected" 
                                 checked={seat.booked}
-                                onClick={toggleBook}
-                                className="absolute top-1 left-1 rounded bg-sky text-blue outline-none focus:ring-0 focus:ring-offset-1 border-blue"
+                                className="absolute pointer-events-none top-1 left-1 rounded bg-sky text-blue outline-none focus:ring-0 focus:ring-offset-1 border-blue"
                             />
                         )
                     }
-                    <span className="text-sm text-blue font-bold">{seat.seatNumber}</span>
+                    <span className="text-sm text-blue font-bold select-none">{seat.seatNumber}</span>
                 </BookedSeatBox>
             );
         }
     
     
         return (
-            <SeatBox>
+            <SeatBox
+                onClick={editMode ? toggleBook : () => {}}
+                className={editMode ? "cursor-pointer" : ""}
+            >
                 {
                     editMode && (
                         <input 
@@ -94,12 +101,11 @@ const Seat = ({ seat, editMode, toggleBook, toggleSelect }: Props) => {
                             name="selected" 
                             id="selected" 
                             checked={seat.booked}
-                            onClick={toggleBook}
-                            className="absolute top-1 left-1 rounded bg-sky text-blue outline-none focus:ring-0 focus:ring-offset-1 border-blue"
+                            className="absolute pointer-events-none top-1 left-1 rounded bg-sky text-blue outline-none focus:ring-0 focus:ring-offset-1 border-blue"
                         />
                     )
                 }
-                <span className="text-sm text-blue font-bold">{seat.seatNumber}</span>
+                <span className="text-sm text-blue font-bold select-none">{seat.seatNumber}</span>
             </SeatBox>
         );
     };
