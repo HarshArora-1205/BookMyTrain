@@ -4,7 +4,6 @@ import Seat from "@/components/seat";
 import { SiPeerlist } from "react-icons/si";
 import { MdEdit } from "react-icons/md";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import Image from "next/image";
 import Link from "next/link";
 import { Seat as TrainSeat } from "@/types/seat";
 import { useEffect, useState } from "react";
@@ -22,12 +21,6 @@ export default function Home() {
 
     setSeats(generatedSeats);
   }, []);
-
-  const seat = {
-    seatNumber: 1,
-    booked: true,
-    currentlySelected: false,
-  };
 
   const toggleSeatSelection = (seatNumber: number) => {
     setSeats((prevSeats) => {
@@ -63,13 +56,13 @@ export default function Home() {
         <div className="flex justify-between mb-4">
           {editMode && (
             <div className="flex gap-2">
-              <button className="text-[10px] border h-6 w-12 tracking-wider border-blue">RESET</button>
-              <button className="text-[10px] border h-6 w-20 tracking-wider border-blue">SELECT ALL</button>
+              <button className="text-[10px] border h-6 w-12 tracking-wider select-none border-blue">RESET</button>
+              <button className="text-[10px] border h-6 w-20 tracking-wider select-none border-blue">SELECT ALL</button>
             </div>
           )}
 
           <div className={`flex items-center gap-4 ${editMode ? "" : "ml-auto"}`}>
-            <label htmlFor="editMode" className="text-[10px] cursor-pointer tracking-wider">EDIT MODE</label>
+            <label htmlFor="editMode" className="text-[10px] cursor-pointer tracking-wider select-none">EDIT MODE</label>
             <input className="hidden peer" type="checkbox" id="editMode" checked={editMode} onChange={toggleMode}/>
             <label
               className="flex items-center justify-start shadow-[inset_0px_0px_7.3px_3px_rgba(0,0,0,0.25)] w-10 border bg-gray border-blue h-6 p-1 cursor-pointer peer-checked:justify-end peer-checked:bg-blue"
@@ -100,7 +93,7 @@ export default function Home() {
             <SiPeerlist className="transform transition-transform duration-300 hover:translate-y-[-4px] filter hover:drop-shadow-md" size={24}/>
           </Link>
         </div>
-        <h2 className="text-xs tracking-wider">
+        <h2 className="text-xs tracking-wider select-none">
           MADE WITH ❣ & 🧠️ BY HARSH ARORA  
         </h2>
       </footer>
