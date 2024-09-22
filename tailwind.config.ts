@@ -7,13 +7,29 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+    },
+    
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      spacing: {
+        '128': '32rem',
+        '144': '36rem',
       },
+      colors: {
+        blue: '#1C4980',
+        sky: '#DFF1F1',
+        gray: '#9CB0AF',
+        fadeblue: '#AEC7D5',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+      }
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
 export default config;
