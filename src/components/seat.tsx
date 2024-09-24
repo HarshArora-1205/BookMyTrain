@@ -5,9 +5,9 @@ import React from 'react';
 
 type Props = {
     seat: TrainSeat;
-    editMode: boolean;
-    toggleSelect: () => void;
-    toggleBook: () => void;
+    editMode?: boolean;
+    toggleSelect?: () => void;
+    toggleBook?: () => void;
 }
 
 const BookedSeatBox = styled.div`
