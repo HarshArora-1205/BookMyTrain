@@ -339,7 +339,7 @@ export default function Home() {
   `;
 
   return (
-    <div className="flex flex-col items-center bg-sky text-blue font-bold justify-between w-full h-[100%] p-4">
+    <div className="flex flex-col items-center bg-sky text-blue font-bold justify-between w-full min-h-screen h-[100%] p-4">
       <main className="mb-4 lg:mb-0 py-4 flex flex-col-reverse lg:flex-row gap-8 items-center lg:gap-0 w-fit lg:w-full  justify-evenly">
         <div className="w-fit">
           <div className="flex justify-between mb-4">
@@ -388,7 +388,7 @@ export default function Home() {
                 type="number" 
                 name="booking" 
                 id="bookinput" 
-                className="w-20 h-10 text-xs bg-transparent border-blue" 
+                className="w-20 h-10 text-xs bg-transparent border-blue select-none" 
                 value={input} 
                 onChange={handleInputChange}
                 min={1} 
@@ -414,24 +414,24 @@ export default function Home() {
                 {helperText}
               </h4>
             </div>
-            <Image src={logo} alt="Logo" style={{ width: '160px', height: '80px' }}/>
+            <Image src={logo} className='select-none' alt="Logo" style={{ width: '160px', height: '80px' }}/>
           </div>
           <TicketBox>
             {bookedSeats && bookedSeats.length > 0 ? (
               <div>
                 <div className="relative">
-                  <h5 className="text-[10px] absolute top-8 sm:top-16 left-10 sm:left-12">TOTAL PASSENGERS</h5>
-                  <h4 className="text-sm sm:text-lg absolute top-12 left-10 sm:left-12 sm:top-20">{bookedSeats.length}</h4>
-                  <h5 className="text-[10px]   absolute top-20 sm:top-[119px] left-10 sm:left-12">SEATS</h5>
-                  <h4 className="text-sm sm:text-lg absolute top-24 sm:top-[135px] left-10 sm:left-12">
+                  <h5 className="text-[10px] absolute top-8 sm:top-16 left-10 sm:left-12 select-none">TOTAL PASSENGERS</h5>
+                  <h4 className="text-sm sm:text-lg absolute top-12 left-10 sm:left-12 sm:top-20 select-none">{bookedSeats.length}</h4>
+                  <h5 className="text-[10px]   absolute top-20 sm:top-[119px] left-10 sm:left-12 select-none">SEATS</h5>
+                  <h4 className="text-sm sm:text-lg absolute top-24 sm:top-[135px] left-10 sm:left-12 select-none">
                     {bookedSeats.map(seat => seat.seatNumber).join(' ')}
                   </h4>
-                  <h6 className={"absolute text-2xl sm:text-3xl top-32 sm:top-44 left-10 sm:left-12 " + barcode.className}>{formatTimestamp(Date.now())}</h6>
+                  <h6 className={"absolute text-2xl sm:text-3xl top-32 sm:top-44 left-10 sm:left-12  select-none " + barcode.className}>{formatTimestamp(Date.now())}</h6>
                   <Image draggable={false} className="select-none" src={ticket} alt="Ticket" width={512} />
                 </div>
               </div>
             ) : (
-              <h2 className="text-[10px] w-full lg:w-[512px] text-center">YOUR TICKET WILL BE GENERATED HERE</h2>
+              <h2 className="text-[10px] w-full lg:w-[512px] text-center tracking-wider select-none">YOUR TICKET WILL BE GENERATED HERE</h2>
             )}
           </TicketBox>
           <Legend />
