@@ -57,6 +57,7 @@ const Seat = ({ seat, editMode, toggleBook, toggleSelect }: Props) => {
                                 name="selected" 
                                 id="selected" 
                                 checked={seat.booked}
+                                readOnly
                                 className="absolute pointer-events-none top-1 left-1 rounded bg-sky text-gray outline-none focus:ring-0 focus:ring-offset-1 border-blue"
                             />
                         )
@@ -79,6 +80,7 @@ const Seat = ({ seat, editMode, toggleBook, toggleSelect }: Props) => {
                                 name="selected" 
                                 id="selected" 
                                 checked={seat.booked}
+                                readOnly
                                 className="absolute pointer-events-none top-1 left-1 rounded bg-sky text-blue outline-none focus:ring-0 focus:ring-offset-1 border-blue"
                             />
                         )
@@ -100,6 +102,7 @@ const Seat = ({ seat, editMode, toggleBook, toggleSelect }: Props) => {
                             type="checkbox" 
                             name="selected" 
                             id="selected" 
+                            readOnly
                             checked={seat.booked}
                             className="absolute pointer-events-none top-1 left-1 rounded bg-sky text-blue outline-none focus:ring-0 focus:ring-offset-1 border-blue"
                         />
