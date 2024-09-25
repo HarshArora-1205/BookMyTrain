@@ -1,4 +1,5 @@
 import { SiPeerlist } from "react-icons/si";
+import { CgFigma } from "react-icons/cg";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import Link from "next/link";
@@ -21,6 +22,12 @@ const Footer = () => {
 				</Link>
 				<Link href={"https://peerlist.io/knight1205"}>
 					<SiPeerlist
+						className="transform transition-transform duration-300 hover:translate-y-[-4px] filter hover:drop-shadow-md"
+						size={24}
+					/>
+				</Link>
+				<Link href={"https://www.figma.com/design/nMYOSjREt78C9u3FscXECW/Assignments?node-id=52-3&t=GXodHw7VWvF3PvK0-1"}>
+					<CgFigma
 						className="transform transition-transform duration-300 hover:translate-y-[-4px] filter hover:drop-shadow-md"
 						size={24}
 					/>
