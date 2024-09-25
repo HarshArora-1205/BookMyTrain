@@ -20,7 +20,35 @@ const barcode = Libre_Barcode_39_Text({
   weight: ["400"],
 })
 
+const Spinner = styled.div`
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #1C4980; /* Spinner Color */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+`;
+
+const PreloaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #dff1f1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+`;
+
 export default function Home() {
+  const [loading, setLoading] = useState(true);
   const [seats, setSeats] = useState<TrainSeat[]>([]);
   const [seatFreq, setSeatFreq] = useState<number[]>([7,7,7,7,7,7,7,7,7,7,7,3]);
   const [cap, setCap] = useState<number>(80);
@@ -40,6 +68,22 @@ export default function Home() {
 
     setSeats(generatedSeats);
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false); 
+    }, 2000);
+
+    return () => clearTimeout(timer); 
+  }, []);
+
+  if (loading) {
+    return (
+      <PreloaderWrapper>
+        <Spinner />
+      </PreloaderWrapper>
+    );
+  }
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value, 10); 
@@ -396,15 +440,16 @@ export default function Home() {
               />
               <div className="flex gap-2">
                 <button
-                  className="text-xs w-20 h-10 border tracking-wider select-none bg-blue text-sky border-blue disabled:bg-slate-500 disabled:text-fadeblue disabled:border-slate-500 disabled:cursor-not-allowed"
+                  className="text-xs w-20 h-10 border tracking-wider select-none bg-blue text-sky border-blue shadow-xl hover:shadow-none hover:bg-indigo-900 disabled:bg-slate-500 disabled:text-fadeblue disabled:border-slate-500 disabled:cursor-not-allowed"
                   disabled={!input || input<1 || input>7 || editMode}
                   onClick={book}
                 >
                   BOOK
                 </button>
                 <button
-                  className="text-xs w-20 h-10 border tracking-wider select-none bg-transparent text-blue border-blue"
+                  className="text-xs w-20 h-10 border tracking-wider select-none bg-transparent text-blue border-blue shadow-xl hover:shadow-none hover:bg-blue hover:text-sky disabled:bg-slate-500 disabled:text-fadeblue disabled:border-slate-500 disabled:cursor-not-allowed"
                   onClick={resetInput}
+                  disabled={input===1}
                 >
                   RESET
                 </button>
