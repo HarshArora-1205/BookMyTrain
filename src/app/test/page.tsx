@@ -16,7 +16,8 @@ import { Libre_Barcode_39_Text } from "next/font/google";
 import ticket from "@/assets/ticket.png";
 import logo from "@/assets/logo.png";
 
-// Import Components
+// Import Components 
+import Seat from "@/components/seat";
 import Legend from "@/components/legend";
 import Preloader from "@/components/preloader";
 import TicketBox from "@/components/ticketbox";
@@ -44,6 +45,7 @@ export default function Home() {
 	]);
 	const [cap, setCap] = useState<number>(80);
 
+
 	const [input, setInput] = useState<number>(1);
 	const [helperText, setHelperText] = useState<string>("");
 
@@ -68,7 +70,7 @@ export default function Home() {
 	if (loading) {
 		return <Preloader />;
 	}
-
+	
 	const resetInput = () => {
 		setHelperText("");
 		setInput(1);
@@ -97,7 +99,13 @@ export default function Home() {
 		setBookedSeats((prev) => [...prev, newSeats[index]]);
 	};
 
-	const bookInRow = (row: number, start: number, end: number, n: number) => {
+
+	const bookInRow = (
+		row: number,
+		start: number,
+		end: number,
+		n: number
+	) => {
 		const newFreq = [...seatFreq];
 		newFreq[row] = newFreq[row] - n;
 
@@ -192,6 +200,7 @@ export default function Home() {
 		}
 	};
 
+	
 	const resetSeats = () => {
 		const newSeats = seats.map((seat) => ({
 			...seat,
@@ -216,6 +225,7 @@ export default function Home() {
 		setHelperText("");
 		setSeatFreq([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 	};
+
 
 	const toggleSeatBooking = (seatNumber: number) => {
 		const index = seatNumber - 1;
@@ -248,11 +258,12 @@ export default function Home() {
 
 	const toggleMode = () => setEditMode((prev) => !prev);
 
+
 	return (
 		<div className="flex flex-col items-center bg-sky text-blue font-bold justify-between w-full min-h-screen h-[100%] p-4">
 			<main className="mb-4 lg:mb-0 py-4 flex flex-col-reverse lg:flex-row gap-8 items-center lg:gap-0 w-fit lg:w-full  justify-evenly">
-				<Grid
-					seats={seats}
+				<Grid 
+					seats={seats} 
 					editMode={editMode}
 					bookAllSeats={bookAllSeats}
 					resetAllSeats={resetSeats}

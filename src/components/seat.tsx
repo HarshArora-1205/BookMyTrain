@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react';
 type Props = {
     seat: TrainSeat;
     editMode?: boolean;
-    toggleSelect?: () => void;
     toggleBook?: () => void;
 }
 
@@ -69,7 +68,7 @@ const SeatBox = styled.div<{ shakeAnimation?: boolean }>`
   `}
 `;
 
-const Seat = ({ seat, editMode, toggleBook, toggleSelect }: Props) => {
+const Seat = ({ seat, editMode, toggleBook }: Props) => {
     const [shouldShake, setShouldShake] = useState(false);
 
     useEffect(() => {
