@@ -2,9 +2,6 @@
 
 import { ChangeEvent, useEffect, useState } from "react";
 
-// Icons
-import { MdEdit } from "react-icons/md";
-
 // Types
 import { Seat as TrainSeat } from "@/types/seat";
 
@@ -137,7 +134,7 @@ export default function Home() {
 	const resetRecentBookings = () => {
 		if (bookedSeats) {
 			setSeats((prevSeats) => {
-				let updatedSeats = [...prevSeats];
+				const updatedSeats = [...prevSeats];
 
 				bookedSeats.forEach((seat) => {
 					const seatIndex = seat.seatNumber - 1;
